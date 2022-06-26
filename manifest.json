@@ -1,0 +1,16 @@
+{
+  "name": "Fake-ImageCensored",
+  "manifest_version": 3,
+  "version": "0.1.0",
+  "description": "画像をすべて「検閲済み」の表示に差し替える拡張機能です。",
+  "content_scripts": [
+    {
+      "matches": [
+          "*://*/"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
