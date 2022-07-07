@@ -3,6 +3,9 @@
   "manifest_version": 3,
   "version": "0.1.0",
   "description": "画像をすべて「検閲済み」の表示に差し替える拡張機能です。",
+  "action": {
+    "default_popup": "content.html"
+  },
   "content_scripts": [
     {
       "matches": [
