@@ -1,16 +1,16 @@
 window.onload=function()
 {
     console.log("run...");
-    censoredImage();
-    censoredWord();
+    // censoredImage();
+    // censoredWord();
     console.log("...finish");
 }
 
 window.onmessage=function()
 {
     console.log("run(onmessage)...");
-    censoredImage();
-    censoredWord();
+    // censoredImage();
+    // censoredWord();
     console.log("...finish(onmessage)");
 }
 
@@ -51,29 +51,43 @@ function censoredImage()
     }
 }
 
-function censoredWord()
-{
+chrome.runtime.onMessage.addListener((request, sender, sendResponse)=>{
+    censoredArray = String(request.word).split(',');
     let wordArray=["a", "p", "h1", "h2", "h3", "h4", "h5", "tr", "td"];
 
-    console.log("localstorage:"+localStorage.length);
-    for(let ls=0;ls<localStorage.length;ls++)
-    {
-        console.log(localStorage.getItem(localStorage.key(i)));
-    }
-    wordArray.forEach(function(element){
-        let elem
-        console.log(element);
-        elem=document.querySelectorAll(element);
-        for(let i=0;i<elem.length;i++)
-        {
-            let e=elem[i];
-            // console.log(elem[i]);
-            // e.style.display='none';
-            let cnt=e.innerText.length;
-            e.innerText="";
-            for(let j=0;j<cnt;j++){
-                e.innerText+="■";
+    for(var ca=0;ca<censoredArray.length;ca++){
+        // alert(censoredArray[i]);
+        // console.log("localstorage:"+localStorage.length);
+        // for(let ls=0;ls<localStorage.length;ls++)
+        // {
+        //     console.log(localStorage.getItem(localStorage.key(ls)));
+        // }
+        wordArray.forEach(function(element){
+            let elem
+            console.log(element);
+            elem=document.querySelectorAll(element);
+            for(let i=0;i<elem.length;i++)
+            {
+                let e=elem[i];
+                // console.log(elem[i]);
+                // e.style.display='none';
+
+                var rep_word="";
+                for(let j=0;j<censoredArray[ca].length;j++){
+                    rep_word+="■";
+                }
+                
+                var text=e.innerText;
+                console.log(censoredArray[ca]);
+                console.log(text);
+                text=text.split(censoredArray[ca]);
+                text=text.join(rep_word);
+                console.log(text);
+                e.innerText=text;
             }
-        }
-    });
-}
+        });
+    }
+
+    sendResponse();
+    return true;
+});
