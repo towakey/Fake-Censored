@@ -1,7 +1,7 @@
 window.onload=function()
 {
     console.log("run...");
-    // censoredImage();
+    censoredImage();
     // censoredWord();
     console.log("...finish");
 }
@@ -9,7 +9,7 @@ window.onload=function()
 window.onmessage=function()
 {
     console.log("run(onmessage)...");
-    // censoredImage();
+    censoredImage();
     // censoredWord();
     console.log("...finish(onmessage)");
 }
