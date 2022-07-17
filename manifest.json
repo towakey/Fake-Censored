@@ -1,7 +1,7 @@
 {
-  "name": "Fake-ImageCensored",
-  "description": "画像をすべて「検閲済み」の表示に差し替える拡張機能です。",
-  "version": "0.1.0",
+  "name": "Fake-Censored",
+  "description": "画像をすべて「検閲済み」の表示に差し替え、登録した文字を■に差し換える拡張機能です。",
+  "version": "1.0.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html"
